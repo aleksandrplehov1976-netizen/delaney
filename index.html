@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>лиля 4ever</title>
+    <title>делани</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap" />
     <style>
         * {
@@ -163,19 +163,6 @@
         .wp-content .statusbar .signal span:nth-child(4) { height: 9px; }
         .wp-content .statusbar .signal span:nth-child(5) { height: 11px; }
 
-        .wp-content .statusbar .wifi {
-            display: inline-block;
-            width: 14px;
-            height: 11px;
-            margin-left: 1px;
-        }
-
-        .wp-content .statusbar .wifi svg {
-            width: 14px;
-            height: 11px;
-            fill: rgba(255, 255, 255, 0.85);
-        }
-
         .wp-content .statusbar .carrier {
             font-size: 12px;
             font-weight: 600;
@@ -219,81 +206,33 @@
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-            padding: 0 12px 20px 12px;
+            padding: 0;
         }
 
         .wp-content .scroll-area::-webkit-scrollbar {
             display: none;
         }
 
-        .wp-content .title {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 40px;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: -1px;
-            text-transform: lowercase;
-            margin-top: 2px;
-            margin-bottom: 2px;
-            line-height: 1;
-            text-align: left;
+        .wp-content .title-image {
             width: 100%;
-        }
-
-        .wp-content .subtitle {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: left;
-            line-height: 1.4;
-            margin-bottom: 8px;
-            width: 100%;
-            letter-spacing: 0;
-            font-style: normal;
-        }
-
-        .wp-content .image-wrap {
-            width: 100%;
-            padding: 2px 0 10px 0;
+            flex-shrink: 0;
             line-height: 0;
-            background: transparent;
-            min-height: 40px;
-            text-align: left;
         }
 
-        .wp-content .image-wrap img {
+        .wp-content .title-image img {
             width: 100%;
-            max-width: 100%;
             height: auto;
-            max-height: 400px;
-            object-fit: contain;
             display: block;
-            border-radius: 0;
-            box-shadow: none;
-            background: transparent;
-            opacity: 1;
-            visibility: visible;
-            margin: 0;
         }
 
-        .wp-content .bottom-text {
+        .wp-content .content-text {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.5);
-            text-align: left;
-            line-height: 1.5;
-            margin-top: 8px;
-            padding: 8px 0;
-            width: 100%;
-            letter-spacing: 0;
-            font-style: normal;
-        }
-
-        .wp-content .spacer {
-            flex: 1;
-            min-height: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 20px 16px 30px 16px;
+            line-height: 1.6;
+            letter-spacing: 0.2px;
         }
 
         .rotate-message {
@@ -414,14 +353,6 @@
                         <span class="signal">
                             <span></span><span></span><span></span><span></span><span></span>
                         </span>
-                        <span class="wifi">
-                            <svg viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 11.5C8.82843 11.5 9.5 10.8284 9.5 10C9.5 9.17157 8.82843 8.5 8 8.5C7.17157 8.5 6.5 9.17157 6.5 10C6.5 10.8284 7.17157 11.5 8 11.5Z" fill="rgba(255,255,255,0.85)"/>
-                                <path d="M5.5 8C6.5 7.2 7.7 6.7 9 6.7C10.3 6.7 11.5 7.2 12.5 8L11 9.5C10.3 8.9 9.3 8.6 8.5 8.6C7.7 8.6 6.7 8.9 6 9.5L5.5 8Z" fill="rgba(255,255,255,0.85)"/>
-                                <path d="M3 5.5C4.5 4.2 6.3 3.5 8.5 3.5C10.7 3.5 12.5 4.2 14 5.5L12.5 7C11.3 6 9.9 5.5 8.5 5.5C7.1 5.5 5.7 6 4.5 7L3 5.5Z" fill="rgba(255,255,255,0.85)"/>
-                                <path d="M0.5 3C2.5 1.3 5.2 0.5 8.5 0.5C11.8 0.5 14.5 1.3 16.5 3L15 4.5C13.3 3.2 11 2.5 8.5 2.5C6 2.5 3.7 3.2 2 4.5L0.5 3Z" fill="rgba(255,255,255,0.85)"/>
-                            </svg>
-                        </span>
                         <span class="carrier">Mara</span>
                     </div>
                     <div class="right">
@@ -438,18 +369,16 @@
                 </div>
 
                 <div class="scroll-area" id="scrollArea">
-                    <div class="title">heyyy</div>
-                    <div class="subtitle">welcome to my web page</div>
-
-                    <div class="image-wrap">
-                        <img src="a.jpg" alt="" id="innerImage" />
+                    <div class="title-image">
+                        <img src="title.png" alt="" id="titleImage" />
                     </div>
-
-                    <div class="bottom-text">
-                        "ибо так возлюбил бог мир, что отдал сына своего единородного, дабы всякий верующий в него не погиб, но имел жизнь вечную."
+                    <div class="content-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <br /><br />
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                        <br /><br />
+                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
                     </div>
-
-                    <div class="spacer"></div>
                 </div>
             </div>
         </div>
@@ -461,7 +390,7 @@
             const canvas = document.getElementById('overlayCanvas');
             const ctx = canvas.getContext('2d');
             const wpContent = document.getElementById('wpContent');
-            const innerImage = document.getElementById('innerImage');
+            const titleImage = document.getElementById('titleImage');
             const clockTime = document.getElementById('clockTime');
             const scrollArea = document.getElementById('scrollArea');
             const phoneFrame = document.getElementById('phoneFrame');
@@ -475,20 +404,21 @@
             updateClock();
             setInterval(updateClock, 10000);
 
-            document.querySelectorAll('.image-wrap img').forEach(function(el) {
-                el.addEventListener('load', function() {
-                    this.style.opacity = '1';
-                    this.style.visibility = 'visible';
-                });
-                el.addEventListener('error', function() {
-                    this.style.background = '#222';
-                    this.style.minHeight = '60px';
-                });
-                if (el.complete && el.naturalWidth > 0) {
-                    el.style.opacity = '1';
-                    el.style.visibility = 'visible';
-                }
+            titleImage.addEventListener('load', function() {
+                this.style.opacity = '1';
+                this.style.visibility = 'visible';
             });
+
+            titleImage.addEventListener('error', function() {
+                this.style.background = '#222';
+                this.style.minHeight = '200px';
+                this.alt = 'title.png не найдена';
+            });
+
+            if (titleImage.complete && titleImage.naturalWidth > 0) {
+                titleImage.style.opacity = '1';
+                titleImage.style.visibility = 'visible';
+            }
 
             const analysisCanvas = document.createElement('canvas');
             const analysisCtx = analysisCanvas.getContext('2d');
@@ -498,22 +428,6 @@
             let lastImgHeight = 0;
             let isReady = false;
             let isWpVisible = false;
-
-            innerImage.addEventListener('load', function() {
-                this.style.opacity = '1';
-                this.style.visibility = 'visible';
-            });
-
-            innerImage.addEventListener('error', function() {
-                this.style.background = '#222';
-                this.style.minHeight = '60px';
-                this.alt = 'a.jpg не найдена';
-            });
-
-            if (innerImage.complete && innerImage.naturalWidth > 0) {
-                innerImage.style.opacity = '1';
-                innerImage.style.visibility = 'visible';
-            }
 
             phoneFrame.addEventListener('click', function(e) {
                 if (e.target === this || e.target === img || e.target === canvas) {
