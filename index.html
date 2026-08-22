@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>делани</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
     <style>
         * {
             margin: 0;
@@ -266,14 +267,20 @@
 
         .wp-content .skeuo-player {
             width: 100%;
-            padding: 10px 16px 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            padding: 12px 16px 10px 16px;
             background: linear-gradient(180deg, #f0f0f0 0%, #d8d8d8 100%);
             border-top: 1px solid #b0b0b0;
             border-bottom: 1px solid #b0b0b0;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .wp-content .skeuo-player .top-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .wp-content .skeuo-player .cover {
@@ -319,34 +326,30 @@
         .wp-content .skeuo-player .controls {
             display: flex;
             align-items: center;
-            gap: 2px;
-            flex-shrink: 0;
+            justify-content: center;
+            gap: 16px;
+            padding-top: 2px;
         }
 
         .wp-content .skeuo-player .controls button {
-            background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
-            border: 1px solid #999;
-            border-radius: 4px;
-            color: #333;
-            font-size: 16px;
-            padding: 4px 8px;
+            background: transparent;
+            border: none;
+            color: #222;
             cursor: pointer;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            font-weight: 600;
-            transition: all 0.08s ease;
-            line-height: 1;
+            padding: 4px;
+            transition: opacity 0.15s ease;
+            font-family: 'Material Symbols Outlined', 'Segoe UI', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 28;
         }
 
         .wp-content .skeuo-player .controls button:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(180deg, #d8d8d8 0%, #b8b8b8 100%);
+            opacity: 0.5;
         }
 
         .wp-content .skeuo-player .controls .play-btn {
-            font-size: 20px;
-            padding: 4px 12px;
+            font-size: 36px;
         }
 
         .wp-content .gallery-grid {
@@ -510,17 +513,19 @@
                     </div>
 
                     <div class="skeuo-player">
-                        <div class="cover">
-                            <img src="q1.png" alt="" />
-                        </div>
-                        <div class="info">
-                            <div class="track">название трека</div>
-                            <div class="artist">исполнитель</div>
+                        <div class="top-row">
+                            <div class="cover">
+                                <img src="q1.png" alt="" />
+                            </div>
+                            <div class="info">
+                                <div class="track">название трека</div>
+                                <div class="artist">исполнитель</div>
+                            </div>
                         </div>
                         <div class="controls">
-                            <button>◀</button>
-                            <button class="play-btn">▶</button>
-                            <button>▶</button>
+                            <button class="prev-btn">skip_previous</button>
+                            <button class="play-btn">play_circle</button>
+                            <button class="next-btn">skip_next</button>
                         </div>
                     </div>
 
