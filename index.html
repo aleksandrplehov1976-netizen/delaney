@@ -225,14 +225,144 @@
             display: block;
         }
 
-        .wp-content .content-text {
+        .wp-content .skeuo-buttons {
+            width: 100%;
+            padding: 12px 16px 8px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .wp-content .skeuo-buttons .btn {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            color: #3c3c3c;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+            background: linear-gradient(180deg, #f9f9f9 0%, #e8e8e8 50%, #d0d0d0 100%);
+            border: 1px solid #a0a0a0;
+            border-radius: 8px;
+            box-shadow: 
+                0 2px 0 #7a7a7a,
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .wp-content .skeuo-buttons .btn:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 1px 0 #7a7a7a,
+                0 2px 4px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(180deg, #e0e0e0 0%, #d0d0d0 50%, #b8b8b8 100%);
+        }
+
+        .wp-content .skeuo-player {
+            width: 100%;
+            padding: 10px 16px 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(180deg, #f0f0f0 0%, #d8d8d8 100%);
+            border-top: 1px solid #b0b0b0;
+            border-bottom: 1px solid #b0b0b0;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .wp-content .skeuo-player .cover {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border: 1px solid #999;
+            border-radius: 4px;
+            background: #222;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .wp-content .skeuo-player .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 3px;
+        }
+
+        .wp-content .skeuo-player .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wp-content .skeuo-player .info .track {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.2;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .wp-content .skeuo-player .info .artist {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 20px 16px 30px 16px;
-            line-height: 1.6;
-            letter-spacing: 0.2px;
+            color: #555;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .wp-content .skeuo-player .controls {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .wp-content .skeuo-player .controls button {
+            background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
+            border: 1px solid #999;
+            border-radius: 4px;
+            color: #333;
+            font-size: 16px;
+            padding: 4px 8px;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 600;
+            transition: all 0.08s ease;
+            line-height: 1;
+        }
+
+        .wp-content .skeuo-player .controls button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(180deg, #d8d8d8 0%, #b8b8b8 100%);
+        }
+
+        .wp-content .skeuo-player .controls .play-btn {
+            font-size: 20px;
+            padding: 4px 12px;
+        }
+
+        .wp-content .gallery-grid {
+            width: 100%;
+            padding: 4px 4px 20px 4px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3px;
+        }
+
+        .wp-content .gallery-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: none;
+            border-radius: 0;
         }
 
         .rotate-message {
@@ -372,12 +502,40 @@
                     <div class="title-image">
                         <img src="title.png" alt="" id="titleImage" />
                     </div>
-                    <div class="content-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        <br /><br />
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                        <br /><br />
-                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+
+                    <div class="skeuo-buttons">
+                        <button class="btn">заглушка1</button>
+                        <button class="btn">заглушка2</button>
+                        <button class="btn">заглушка3</button>
+                    </div>
+
+                    <div class="skeuo-player">
+                        <div class="cover">
+                            <img src="q1.png" alt="" />
+                        </div>
+                        <div class="info">
+                            <div class="track">название трека</div>
+                            <div class="artist">исполнитель</div>
+                        </div>
+                        <div class="controls">
+                            <button>◀</button>
+                            <button class="play-btn">▶</button>
+                            <button>▶</button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-grid">
+                        <img src="1g.jpg" alt="" />
+                        <img src="2g.jpg" alt="" />
+                        <img src="3g.jpg" alt="" />
+                        <img src="4g.jpg" alt="" />
+                        <img src="5g.jpg" alt="" />
+                        <img src="6g.jpg" alt="" />
+                        <img src="7g.jpg" alt="" />
+                        <img src="8g.jpg" alt="" />
+                        <img src="9g.jpg" alt="" />
+                        <img src="10g.jpg" alt="" />
+                        <img src="11g.jpg" alt="" />
                     </div>
                 </div>
             </div>
@@ -403,6 +561,21 @@
             }
             updateClock();
             setInterval(updateClock, 10000);
+
+            document.querySelectorAll('.skeuo-player .cover img, .gallery-grid img').forEach(function(el) {
+                el.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                    this.style.visibility = 'visible';
+                });
+                el.addEventListener('error', function() {
+                    this.style.background = '#222';
+                    this.style.minHeight = '48px';
+                });
+                if (el.complete && el.naturalWidth > 0) {
+                    el.style.opacity = '1';
+                    el.style.visibility = 'visible';
+                }
+            });
 
             titleImage.addEventListener('load', function() {
                 this.style.opacity = '1';
