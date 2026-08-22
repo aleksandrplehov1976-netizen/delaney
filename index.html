@@ -233,6 +233,18 @@
             display: block;
         }
 
+        .wp-content .image-full {
+            width: 100%;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .wp-content .image-full img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .wp-content .skeuo-buttons {
             width: 100%;
             padding: 12px 16px 8px 16px;
@@ -525,6 +537,10 @@
                         <img src="title.png" alt="" id="titleImage" />
                     </div>
 
+                    <div class="image-full">
+                        <img src="sd.jpg" alt="" />
+                    </div>
+
                     <div class="skeuo-buttons">
                         <button class="btn">заглушка1</button>
                         <button class="btn">заглушка2</button>
@@ -590,7 +606,7 @@
             updateClock();
             setInterval(updateClock, 10000);
 
-            document.querySelectorAll('.skeuo-player .cover img, .gallery-grid img').forEach(function(el) {
+            document.querySelectorAll('.image-full img, .skeuo-player .cover img, .gallery-grid img').forEach(function(el) {
                 el.addEventListener('load', function() {
                     this.style.opacity = '1';
                     this.style.visibility = 'visible';
