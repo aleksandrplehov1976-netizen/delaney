@@ -401,6 +401,81 @@
             padding: 0;
         }
 
+        .wp-content .bottom-spacer {
+            width: 100%;
+            height: 30px;
+            flex-shrink: 0;
+        }
+
+        .wp-content .random-block {
+            width: 100%;
+            padding: 12px 16px 20px 16px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.15s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .wp-content .random-block:active {
+            opacity: 0.6;
+        }
+
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fullscreen-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .fullscreen-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .fullscreen-overlay .close-btn {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 32px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.5px;
+            text-transform: lowercase;
+            border-radius: 0;
+        }
+
+        .fullscreen-overlay .close-btn:active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
         .rotate-message {
             position: fixed;
             top: 0;
@@ -508,6 +583,11 @@
         ПЕРЕВЕРНИ ТЕЛЕФОН<br>В ПОРТРЕТНЫЙ РЕЖИМ
     </div>
 
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <img src="fgh.jpg" alt="" />
+        <button class="close-btn" id="closeFullscreen">close</button>
+    </div>
+
     <div class="container">
         <div class="phone-frame" id="phoneFrame">
             <img id="frameImage" src="df.png" alt="Phone Frame" crossorigin="anonymous" />
@@ -554,19 +634,20 @@
                     </div>
 
                     <div class="skeuo-player">
+                        <audio id="player" src="tty.mp3"></audio>
                         <div class="top-row">
                             <div class="cover">
                                 <img src="q1.png" alt="" />
                             </div>
                             <div class="info">
-                                <div class="track">название трека</div>
-                                <div class="artist">исполнитель</div>
+                                <div class="track">Hello Heaven, Hello</div>
+                                <div class="artist">YUNGBLUD</div>
                             </div>
                         </div>
                         <div class="controls">
-                            <button class="prev-btn">skip_previous</button>
-                            <button class="play-btn">play_circle</button>
-                            <button class="next-btn">skip_next</button>
+                            <button class="prev-btn" id="prevBtn">skip_previous</button>
+                            <button class="play-btn" id="playBtn">play_circle</button>
+                            <button class="next-btn" id="nextBtn">skip_next</button>
                         </div>
                     </div>
 
@@ -581,7 +662,12 @@
                         <img src="8g.jpg" alt="" />
                         <img src="9g.jpg" alt="" />
                         <img src="10g.jpg" alt="" />
-                        <img src="11g.jpg" alt="" />
+                    </div>
+
+                    <div class="bottom-spacer"></div>
+
+                    <div class="random-block" id="randomBlock">
+                        <span id="randomText">7 jam</span>
                     </div>
                 </div>
             </div>
@@ -598,6 +684,69 @@
             const clockTime = document.getElementById('clockTime');
             const scrollArea = document.getElementById('scrollArea');
             const phoneFrame = document.getElementById('phoneFrame');
+
+            // АУДИО ПЛЕЕР
+            const audio = document.getElementById('player');
+            const playBtn = document.getElementById('playBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let isPlaying = false;
+
+            if (audio && playBtn) {
+                playBtn.addEventListener('click', function() {
+                    if (audio.paused) {
+                        audio.play().catch(function(e) {});
+                        this.textContent = 'pause_circle';
+                        isPlaying = true;
+                    } else {
+                        audio.pause();
+                        this.textContent = 'play_circle';
+                        isPlaying = false;
+                    }
+                });
+
+                audio.addEventListener('ended', function() {
+                    playBtn.textContent = 'play_circle';
+                    isPlaying = false;
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    audio.currentTime = Math.max(0, audio.currentTime - 5);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
+                });
+            }
+
+            // ФУЛЛСКРИН
+            const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+            const closeFullscreen = document.getElementById('closeFullscreen');
+            const randomBlock = document.getElementById('randomBlock');
+
+            // Генерация рандомного числа и слова
+            const words = ['jam', 'palette', 'gouache', 'bitch', 'sketch', 'vibe', 'glitch', 'pulse', 'flare', 'muse'];
+            const randomNum = Math.floor(Math.random() * 20) + 1;
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            document.getElementById('randomText').textContent = randomNum + ' ' + randomWord;
+
+            randomBlock.addEventListener('click', function() {
+                fullscreenOverlay.classList.add('active');
+            });
+
+            closeFullscreen.addEventListener('click', function() {
+                fullscreenOverlay.classList.remove('active');
+            });
+
+            fullscreenOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
 
             function updateClock() {
                 const now = new Date();
