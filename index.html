@@ -377,26 +377,28 @@
             font-weight: 400;
             color: rgba(255, 255, 255, 0.85);
             padding: 20px 16px 16px 16px;
-            line-height: 0.9;
+            line-height: 1.2;
             letter-spacing: 0.3px;
             text-align: left;
             width: 100%;
         }
 
-        .wp-content .gallery-grid {
+        .wp-content .gallery-stack {
             width: 100%;
-            padding: 4px 4px 20px 4px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 3px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .wp-content .gallery-grid img {
+        .wp-content .gallery-stack img {
             width: 100%;
             height: auto;
             display: block;
             border: none;
             border-radius: 0;
+            margin: 0;
+            padding: 0;
         }
 
         .rotate-message {
@@ -557,8 +559,8 @@
                                 <img src="q1.png" alt="" />
                             </div>
                             <div class="info">
-                                <div class="track">Hello Heaven, Hello</div>
-                                <div class="artist">YUNGBLUD</div>
+                                <div class="track">название трека</div>
+                                <div class="artist">исполнитель</div>
                             </div>
                         </div>
                         <div class="controls">
@@ -568,7 +570,7 @@
                         </div>
                     </div>
 
-                    <div class="gallery-grid">
+                    <div class="gallery-stack">
                         <img src="1g.jpg" alt="" />
                         <img src="2g.jpg" alt="" />
                         <img src="3g.jpg" alt="" />
@@ -606,7 +608,7 @@
             updateClock();
             setInterval(updateClock, 10000);
 
-            document.querySelectorAll('.image-full img, .skeuo-player .cover img, .gallery-grid img').forEach(function(el) {
+            document.querySelectorAll('.image-full img, .skeuo-player .cover img, .gallery-stack img').forEach(function(el) {
                 el.addEventListener('load', function() {
                     this.style.opacity = '1';
                     this.style.visibility = 'visible';
