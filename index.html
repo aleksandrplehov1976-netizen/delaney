@@ -342,41 +342,13 @@
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
-        .wp-content .skeuo-player .controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            padding-top: 2px;
-        }
-
-        .wp-content .skeuo-player .controls button {
-            background: transparent;
-            border: none;
-            color: #222;
-            cursor: pointer;
-            padding: 4px;
-            transition: opacity 0.15s ease;
-            font-family: 'Material Symbols Outlined', 'Segoe UI', sans-serif;
-            font-size: 28px;
-            font-weight: 400;
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 28;
-        }
-
-        .wp-content .skeuo-player .controls button:active {
-            opacity: 0.5;
-        }
-
-        .wp-content .skeuo-player .controls .play-btn {
-            font-size: 36px;
-        }
-
         /* ползунок + кнопка паузы в один ряд */
         .wp-content .skeuo-player .playback-row {
             display: flex;
             align-items: center;
             gap: 12px;
             width: 100%;
+            margin-top: 4px;
         }
         .wp-content .skeuo-player .playback-row input[type="range"] {
             flex: 1;
@@ -407,19 +379,20 @@
             cursor: pointer;
             border: 1px solid #888;
         }
-        .wp-content .skeuo-player .playback-row .pause-btn {
+        .wp-content .skeuo-player .playback-row .play-pause-btn {
             background: transparent;
             border: none;
             color: #222;
             cursor: pointer;
             font-family: 'Material Symbols Outlined', 'Segoe UI', sans-serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 400;
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 32;
             padding: 4px;
             flex-shrink: 0;
+            line-height: 1;
         }
-        .wp-content .skeuo-player .playback-row .pause-btn:active {
+        .wp-content .skeuo-player .playback-row .play-pause-btn:active {
             opacity: 0.5;
         }
 
@@ -696,14 +669,9 @@
                                 <div class="artist">YUNGBLUD</div>
                             </div>
                         </div>
-                        <div class="controls">
-                            <button class="prev-btn" id="prevBtn">skip_previous</button>
-                            <button class="play-btn" id="playBtn">play_circle</button>
-                            <button class="next-btn" id="nextBtn">skip_next</button>
-                        </div>
                         <div class="playback-row">
                             <input type="range" id="seekSlider" min="0" max="100" value="0" />
-                            <button class="pause-btn" id="pauseBtn">pause</button>
+                            <button class="play-pause-btn" id="playPauseBtn">play_circle</button>
                         </div>
                     </div>
 
@@ -743,10 +711,7 @@
 
             // АУДИО ПЛЕЕР
             const audio = document.getElementById('player');
-            const playBtn = document.getElementById('playBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const pauseBtn = document.getElementById('pauseBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
             const seekSlider = document.getElementById('seekSlider');
             let isPlaying = false;
 
@@ -771,56 +736,24 @@
                 }
             });
 
-            // play/pause через playBtn (круглая)
-            if (audio && playBtn) {
-                playBtn.addEventListener('click', function() {
+            // единая кнопка play/pause
+            if (audio && playPauseBtn) {
+                playPauseBtn.addEventListener('click', function() {
                     if (audio.paused) {
                         audio.play().catch(function(e) {});
                         this.textContent = 'pause_circle';
-                        pauseBtn.textContent = 'pause';
                         isPlaying = true;
                     } else {
                         audio.pause();
                         this.textContent = 'play_circle';
-                        pauseBtn.textContent = 'play_arrow';
                         isPlaying = false;
                     }
                 });
 
                 audio.addEventListener('ended', function() {
-                    playBtn.textContent = 'play_circle';
-                    pauseBtn.textContent = 'play_arrow';
+                    playPauseBtn.textContent = 'play_circle';
                     isPlaying = false;
                     seekSlider.value = 0;
-                });
-            }
-
-            // отдельная кнопка паузы (материал символ)
-            if (pauseBtn) {
-                pauseBtn.addEventListener('click', function() {
-                    if (audio.paused) {
-                        audio.play().catch(function(e) {});
-                        this.textContent = 'pause';
-                        playBtn.textContent = 'pause_circle';
-                        isPlaying = true;
-                    } else {
-                        audio.pause();
-                        this.textContent = 'play_arrow';
-                        playBtn.textContent = 'play_circle';
-                        isPlaying = false;
-                    }
-                });
-            }
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function() {
-                    audio.currentTime = Math.max(0, audio.currentTime - 5);
-                });
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function() {
-                    audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
                 });
             }
 
