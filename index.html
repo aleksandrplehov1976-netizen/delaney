@@ -371,6 +371,58 @@
             font-size: 36px;
         }
 
+        /* ползунок + кнопка паузы в один ряд */
+        .wp-content .skeuo-player .playback-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+        .wp-content .skeuo-player .playback-row input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #ccc;
+            height: 4px;
+            border-radius: 2px;
+            outline: none;
+            padding: 0;
+            margin: 0;
+        }
+        .wp-content .skeuo-player .playback-row input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #222;
+            cursor: pointer;
+            border: 1px solid #888;
+        }
+        .wp-content .skeuo-player .playback-row input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #222;
+            cursor: pointer;
+            border: 1px solid #888;
+        }
+        .wp-content .skeuo-player .playback-row .pause-btn {
+            background: transparent;
+            border: none;
+            color: #222;
+            cursor: pointer;
+            font-family: 'Material Symbols Outlined', 'Segoe UI', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        .wp-content .skeuo-player .playback-row .pause-btn:active {
+            opacity: 0.5;
+        }
+
         .wp-content .motivational-text {
             font-family: 'zagolovok', 'Segoe UI', sans-serif;
             font-size: 22px;
@@ -624,9 +676,9 @@
                     </div>
 
                     <div class="skeuo-buttons">
-                        <button class="btn">заглушка1</button>
-                        <button class="btn">заглушка2</button>
-                        <button class="btn">заглушка3</button>
+                        <a href="https://t.me/blissers1" target="_blank" class="btn">tg</a>
+                        <a href="https://www.instagram.com/delaneyy03?igsi=MTE3cDQyeGhjdTJnMA%3D%3D&utm_source=qr" target="_blank" class="btn">inst</a>
+                        <a href="https://www.tiktok.com/@delaneyln04?_r=1&_t=ZS-99KB7HfXyhJ" target="_blank" class="btn">tiktok</a>
                     </div>
 
                     <div class="motivational-text">
@@ -634,7 +686,7 @@
                     </div>
 
                     <div class="skeuo-player">
-                        <audio id="player" src="tty.mp3"></audio>
+                        <audio id="player" src="ght.mp3"></audio>
                         <div class="top-row">
                             <div class="cover">
                                 <img src="q1.png" alt="" />
@@ -648,6 +700,10 @@
                             <button class="prev-btn" id="prevBtn">skip_previous</button>
                             <button class="play-btn" id="playBtn">play_circle</button>
                             <button class="next-btn" id="nextBtn">skip_next</button>
+                        </div>
+                        <div class="playback-row">
+                            <input type="range" id="seekSlider" min="0" max="100" value="0" />
+                            <button class="pause-btn" id="pauseBtn">pause</button>
                         </div>
                     </div>
 
@@ -690,24 +746,69 @@
             const playBtn = document.getElementById('playBtn');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const seekSlider = document.getElementById('seekSlider');
             let isPlaying = false;
 
+            // синхронизация ползунка
+            function updateSeek() {
+                if (audio.duration) {
+                    const val = (audio.currentTime / audio.duration) * 100;
+                    seekSlider.value = val;
+                }
+            }
+
+            audio.addEventListener('timeupdate', updateSeek);
+
+            audio.addEventListener('loadedmetadata', function() {
+                seekSlider.value = 0;
+            });
+
+            seekSlider.addEventListener('input', function() {
+                if (audio.duration) {
+                    const time = (this.value / 100) * audio.duration;
+                    audio.currentTime = time;
+                }
+            });
+
+            // play/pause через playBtn (круглая)
             if (audio && playBtn) {
                 playBtn.addEventListener('click', function() {
                     if (audio.paused) {
                         audio.play().catch(function(e) {});
                         this.textContent = 'pause_circle';
+                        pauseBtn.textContent = 'pause';
                         isPlaying = true;
                     } else {
                         audio.pause();
                         this.textContent = 'play_circle';
+                        pauseBtn.textContent = 'play_arrow';
                         isPlaying = false;
                     }
                 });
 
                 audio.addEventListener('ended', function() {
                     playBtn.textContent = 'play_circle';
+                    pauseBtn.textContent = 'play_arrow';
                     isPlaying = false;
+                    seekSlider.value = 0;
+                });
+            }
+
+            // отдельная кнопка паузы (материал символ)
+            if (pauseBtn) {
+                pauseBtn.addEventListener('click', function() {
+                    if (audio.paused) {
+                        audio.play().catch(function(e) {});
+                        this.textContent = 'pause';
+                        playBtn.textContent = 'pause_circle';
+                        isPlaying = true;
+                    } else {
+                        audio.pause();
+                        this.textContent = 'play_arrow';
+                        playBtn.textContent = 'play_circle';
+                        isPlaying = false;
+                    }
                 });
             }
 
